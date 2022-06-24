@@ -1,11 +1,13 @@
-node {
+pipeline {
     	agent any
     
   	tools {nodejs "node"}
 	
-	stage('Git') {
-		git 'https://github.com/gustavoapolinario/node-todo-frontend'
-	}
+	 stage('Build') {
+            steps {
+                echo 'Building..'
+            }
+        }
 	stage('Build') {
 		sh 'npm install'
 	}
