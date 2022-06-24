@@ -1,35 +1,26 @@
 pipeline {
-    agent any 
-    stages {
-        stage('Build') {
-            steps {
-                echo 'Building..'
-            }
-        }
-	stage('NodeJs') {
-	     steps {
-		sh 'npm install'
-	     }
-	}
-        stage('Test') {
-            steps {
-                sh 'npm test'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-            }
-        }
-        stage('Release') {
-            steps {
-                echo 'Release into prod'
-            }
-        }
-        stage('Prod') {
-            steps {
-                echo 'Release into prod'
-                }
+  agent any
+    
+  tools {nodejs "node"}
+    
+  stages {
+        
+    stage('Cloning Git') {
+      steps {
+        git 'https://github.com/Rohith0183/node-todo-frontend'
+      }
     }
+        
+    stage('Install dependencies') {
+      steps {
+        sh 'npm install'
+      }
     }
+     
+    stage('Test') {
+      steps {
+         sh 'npm test'
+      }
+    }      
+  }
 }
