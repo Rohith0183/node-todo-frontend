@@ -7,7 +7,7 @@ pipeline {
         
     stage('Cloning Git') {
       steps {
-        git 'https://github.com/Rohith0183/node-todo-frontend.git'
+        git branch: 'main', url: 'https://github.com/Rohith0183/node-todo-frontend.git'
       }
     }
         
